@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 14:32:56 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/08 17:42:17 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void    ra(t_stack **stack)
     new = malloc(sizeof(t_stack));
     if (!new)
         allocate_error();
-    new = *stack;
+    new->num = (*stack)->num;
     new->next  = NULL;
     *stack = (*stack)->next;
     tmp = *stack;
@@ -54,4 +54,21 @@ void    ra(t_stack **stack)
         tmp = tmp->next;
     tmp->next = new;
     write(1, "ra\n", 3);
+}
+
+void    rra(t_stack **stack)
+{
+    t_stack *tmp;
+    int     last_num;
+
+    tmp = *stack;
+    while (tmp->next)
+            tmp = tmp->next;
+    last_num = tmp->num;
+    tmp = *stack; 
+    while (tmp->next && tmp->next->next)
+            tmp = tmp->next;
+    tmp->next = NULL;
+    append_start(stack, last_num);
+    write(1, "rra\n", 4);
 }

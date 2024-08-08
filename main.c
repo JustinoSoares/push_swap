@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 14:31:12 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/08 17:42:21 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char *av[])
         case 2:
             while (i < ac)
             {
-                pop_end(&stack_a, atoi(av[i]));
+                append_end(&stack_a, atoi(av[i]));
                 i++;
             }
             break;
@@ -38,7 +38,7 @@ int main(int ac, char *av[])
             printf("size: %d\n", stack_size(stack_a));
             break;
         case 4:
-            sa(&stack_a);
+            rra(&stack_a);
         default:
             break;
         }

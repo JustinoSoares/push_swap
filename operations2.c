@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 14:28:20 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/08 17:44:11 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,24 @@ void    ft_write(t_stack *stack)
             write(1, "Empty\n", 6);
 }
 
-void    pop_end(t_stack **stack, int num)
+void    pop_start(t_stack **stack)
+{
+        *stack = (*stack)->next;
+}
+
+void    append_start(t_stack **stack, int num)
+{
+    t_stack *new;
+
+    new = malloc(sizeof(t_stack));
+    if (!new)
+        allocate_error();
+    new->num = num;
+    new->next = *stack;
+    *stack = new;
+}
+
+void    append_end(t_stack **stack, int num)
 {
     t_stack *new;
     t_stack *tmp;
@@ -61,6 +78,5 @@ int stack_size(t_stack *stack)
             length++;
         }
     }
-    
     return (length);
 }
