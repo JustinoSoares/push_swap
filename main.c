@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/09 11:40:29 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:42:56 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int ac, char *av[])
             printf("size: %d\n", stack_size(stack_a));
             break;
         case 4:
-            printf("%d\n", next_min(stack_a, 0));
+            sort_any(stack_a, stack_b);
         default:
             break;
         }

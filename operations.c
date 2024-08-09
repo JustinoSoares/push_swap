@@ -6,13 +6,13 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 17:56:11 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:48:50 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    sa(t_stack **stack)
+void    swap(t_stack **stack, char ab)
 {
     int swap;
 
@@ -21,24 +21,13 @@ void    sa(t_stack **stack)
         swap = (*stack)->num;
         (*stack)->num = (*stack)->next->num;
         (*stack)->next->num = swap;
-        write(1, "sa\n", 3); 
+        write(1, "s\n", 1); 
+        write(1, &ab, 1); 
+        write(1, "\n", 1); 
     }
 }
 
-void    sb(t_stack **stack)
-{
-    int swap;
-
-    if ((*stack)->next)
-    {
-        swap = (*stack)->num;
-        (*stack)->num = (*stack)->next->num;
-        (*stack)->next->num = swap;
-        write(1, "sb\n", 3); 
-    }
-}
-
-void    ra(t_stack **stack)
+void    rotate(t_stack **stack, char ab)
 {
     t_stack *tmp; 
     t_stack *new;
@@ -53,7 +42,9 @@ void    ra(t_stack **stack)
     while (tmp->next)
         tmp = tmp->next;
     tmp->next = new;
-    write(1, "ra\n", 3);
+    write(1, "r\n", 1); 
+    write(1, &ab, 1); 
+    write(1, "\n", 1);
 }
 
 void    rra(t_stack **stack)
