@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 17:44:42 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/09 11:26:15 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,10 @@ void    append_end(t_stack **stack, int num);
 void    append_start(t_stack **stack, int num);
 void    pop_start(t_stack **stack);
 int stack_size(t_stack *stack);
+void    push(t_stack **stack_from, t_stack **stack_to, char ab);
+int max_value(t_stack *stack);
+int min_value(t_stack *stack);
+int next_max(t_stack *stack, int num);
+int next_min(t_stack *stack, int num);
 
 #endif

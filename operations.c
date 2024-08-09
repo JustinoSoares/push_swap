@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 17:42:17 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/08 17:56:11 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,16 @@ void    rra(t_stack **stack)
     tmp->next = NULL;
     append_start(stack, last_num);
     write(1, "rra\n", 4);
+}
+
+void    push(t_stack **stack_from, t_stack **stack_to, char ab)
+{
+    int top;
+    
+    top = (*stack_from)->num;
+    pop_start(stack_from);
+    append_start(stack_to, top);
+    write(1, "p", 1);
+    write(1, &ab, 1);
+    write(1, "\n", 1);
 }

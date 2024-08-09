@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 17:42:21 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/09 11:40:29 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int ac, char *av[])
     int i = 1;
     int op;
     t_stack *stack_a = NULL;
+    t_stack *stack_b = NULL;
     
     while (1)
     {
@@ -25,7 +26,10 @@ int main(int ac, char *av[])
         switch (op)
         {
         case 1:
+            printf("stack a\n");
             ft_write(stack_a);
+            printf("stack b\n");
+            ft_write(stack_b);
             break;
         case 2:
             while (i < ac)
@@ -38,7 +42,7 @@ int main(int ac, char *av[])
             printf("size: %d\n", stack_size(stack_a));
             break;
         case 4:
-            rra(&stack_a);
+            printf("%d\n", next_min(stack_a, 0));
         default:
             break;
         }
