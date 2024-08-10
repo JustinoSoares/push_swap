@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/09 11:40:08 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/10 21:22:45 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,4 +155,18 @@ int next_min(t_stack *stack, int num)
     else
         result = next_max(stack, num);
     return (result);
+}
+
+int get_index(t_stack *stack, int num)
+{
+    int index;
+    index = 0;
+    while (stack)
+    {
+        if (stack->num == num)
+            return(index);
+        stack = stack->next;
+        index++;
+    }
+    return (index);
 }

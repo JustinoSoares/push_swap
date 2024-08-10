@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/09 15:41:32 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/10 21:37:45 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define SIZE_TAB 5
 typedef struct s_stack
 {
     int num;
@@ -40,6 +41,7 @@ int next_max(t_stack *stack, int num);
 int next_min(t_stack *stack, int num);
 int is_sorted(t_stack **stack);
 void    sort_3(t_stack **stack);
-void    sort_any(t_stack *stack_a, t_stack *stack_b);
+void    sort_any(t_stack **stack_a, t_stack **stack_b);
+int get_index(t_stack *stack, int num);
 
 #endif
