@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/10 23:05:55 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/11 20:07:39 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void    sort_3(t_stack **stack)
         if ((*stack)->num > (*stack)->next->num)
             swap(stack, 'a');
         else
-            rra(stack);
+            rr(stack, 'a');
     }  
 }
+
+
 
 /*
     se a pilha tiver  mais de 3 elementos empura no maximo 2 elementos
@@ -46,10 +48,13 @@ void    sort_any(t_stack **stack_a, t_stack **stack_b)
     t_stack *tmp_b;
     int **tab;
     int row;
+    int cont;
+    int cost;
     int opt_a;
     int opt_b;
-
-    row = 0;
+    int index_cheaper;
+    cont = 0;
+    
     tmp_a = *stack_a; 
     int send_without_verify;
 
@@ -65,15 +70,26 @@ void    sort_any(t_stack **stack_a, t_stack **stack_b)
     tmp_a = *stack_a; 
     tmp_b = *stack_b;
     // em vez de if deve ir um while
-    if (stack_size(tmp_a) > 3)
+    while (stack_size(tmp_a) > 3)
     {
-        printf("maior que 3\n");
+        if (stack_size(tmp_a) == 3)
+        {
+            sort_3(&tmp_a);
+            break ;
+        }  
+        //printf("maior que 3\n");
+        tab = malloc(sizeof(int *) * (stack_size(tmp_b) + 1));
+        if (!tab)
+            allocate_error();
+        tmp_b = *stack_b;
+        row = 0;
         while (tmp_b)
         {
-            tab = malloc(sizeof(int) * (stack_size(tmp_b) + 1));
-            if (!tab)
-                allocate_error();
             tab[row] = malloc(sizeof(int) * (SIZE_TAB + 1));
+            if (!tab[row])
+            {
+                allocate_error();
+            }
                 // valor
                 tab[row][0] = tmp_b->num;
                 //Valor de destino na stack_a
@@ -93,7 +109,16 @@ void    sort_any(t_stack **stack_a, t_stack **stack_b)
                 tab[row][4] = opt_a + opt_b;
                 tmp_b = tmp_b->next;
                 printf("custo = %d\n", tab[row][4]);
+                printf("row = %d\n", row);
                 row++;
-        }    
+        }
+        // calcular o custo mais barato
+        index_cheaper = ft_index_cheaper(tab);
+        printf("custo barato = %d\n", index_cheaper);
+        put_on_top(tmp_a, tab[index_cheaper][2], tmp_b, tab[index_cheaper][3]);
+        push(stack_a, stack_b, 'a');
+        (void)cost;
+        (void)cont;
+        (void)index_cheaper;
     }
 }

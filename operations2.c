@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/10 21:22:45 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/11 18:11:33 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,3 +170,92 @@ int get_index(t_stack *stack, int num)
     }
     return (index);
 }
+// retorna o indice do custo mais barato;
+int ft_index_cheaper(int **tab)
+{
+    int cont;
+    int cost;
+    int index;
+    
+    cont = 0;
+    index  = 0;
+    cost = tab[0][4];
+    /// seria while
+    while (tab[cont])
+    {
+        if (cost > tab[0][4])
+        {
+            cost = tab[0][4];
+            index++;
+        }
+        cont++;
+    }
+    return (index);
+}
+
+void    put_on_top_a(t_stack *stack_a, int index_a)
+{
+    int cont;
+
+    cont  = 0;
+    if (index_a <= (stack_size(stack_a) / 2))
+    {
+        while (cont < index_a)
+        {
+            rotate(&stack_a, 'a');
+            cont++;
+        }
+    }
+    else
+    {
+        while (cont < index_a)
+        {
+            rr(&stack_a, 'a');
+            cont++;
+        }
+    }
+}
+
+void    put_on_top_b(t_stack *stack_b, int index_b)
+{
+    int cont;
+
+    cont  = 0;
+    if (index_b <= (stack_size(stack_b) / 2))
+    {
+        while (cont < index_b)
+        {
+            rotate(&stack_b, 'b');
+            cont++;
+        }
+    }
+    else
+    {
+        while (cont < index_b)
+        {
+            rr(&stack_b, 'b');
+            cont++;
+        }
+    }
+}
+
+void    put_on_top(t_stack *stack_a, int index_a, t_stack *stack_b, int index_b)
+{
+    int cont;
+
+    cont = 0;
+    if (index_a != index_b)
+    {
+        put_on_top_a(stack_a, index_a);
+        put_on_top_b(stack_b, index_b);
+    }
+    else
+    {
+        while (cont < index_a)
+        {
+            rr_ab(&stack_a, &stack_b);
+            cont++;   
+        }
+    }
+}
+

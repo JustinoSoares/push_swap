@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/10 22:17:21 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/11 15:59:59 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int ac, char *av[])
             }
             break;
         case 3:
-            printf("size: %d\n", stack_size(stack_a));
+            push(&stack_a, &stack_b, 'a');
             break;
         case 4:
             sort_any(&stack_a, &stack_b);

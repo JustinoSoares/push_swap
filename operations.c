@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/09 14:48:50 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/11 17:19:19 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    swap(t_stack **stack, char ab)
         swap = (*stack)->num;
         (*stack)->num = (*stack)->next->num;
         (*stack)->next->num = swap;
-        write(1, "s\n", 1); 
+        write(1, "s", 1); 
         write(1, &ab, 1); 
         write(1, "\n", 1); 
     }
@@ -42,12 +42,12 @@ void    rotate(t_stack **stack, char ab)
     while (tmp->next)
         tmp = tmp->next;
     tmp->next = new;
-    write(1, "r\n", 1); 
+    write(1, "r", 1); 
     write(1, &ab, 1); 
     write(1, "\n", 1);
 }
 
-void    rra(t_stack **stack)
+void    rr(t_stack **stack, char ab)
 {
     t_stack *tmp;
     int     last_num;
@@ -61,7 +61,18 @@ void    rra(t_stack **stack)
             tmp = tmp->next;
     tmp->next = NULL;
     append_start(stack, last_num);
-    write(1, "rra\n", 4);
+    if (ab != '\0')
+    {
+        write(1, "rr", 2); 
+        write(1, &ab, 1);
+        write(1, "\n", 1);
+    }
+}
+
+void    rr_ab(t_stack **stack_a, t_stack **stack_b)
+{
+    rr(stack_a, 'r');
+    rr(stack_b, '\0');
 }
 
 void    push(t_stack **stack_from, t_stack **stack_to, char ab)
@@ -75,3 +86,5 @@ void    push(t_stack **stack_from, t_stack **stack_to, char ab)
     write(1, &ab, 1);
     write(1, "\n", 1);
 }
+
+
