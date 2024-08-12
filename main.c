@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/11 15:59:59 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/12 10:10:14 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int main(int ac, char *av[])
             push(&stack_a, &stack_b, 'a');
             break;
         case 4:
+            //printf("get_index: %d\n", get_index(stack_a, 6));
             sort_any(&stack_a, &stack_b);
+            //put_on_top(&stack_a, 1, &stack_b, 1);
+            //rr(&stack_a, 'a');
+            //put_on_top_b(&stack_b, 1);
         default:
             break;
         }

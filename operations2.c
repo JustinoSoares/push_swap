@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/11 18:11:33 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/12 11:43:33 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,9 +183,9 @@ int ft_index_cheaper(int **tab)
     /// seria while
     while (tab[cont])
     {
-        if (cost > tab[0][4])
+        if (cost > tab[cont][4])
         {
-            cost = tab[0][4];
+            cost = tab[cont][4];
             index++;
         }
         cont++;
@@ -193,67 +193,73 @@ int ft_index_cheaper(int **tab)
     return (index);
 }
 
-void    put_on_top_a(t_stack *stack_a, int index_a)
+void    put_on_top_a(t_stack **stack_a, int index_a)
 {
     int cont;
+    t_stack *tmp;
 
     cont  = 0;
-    if (index_a <= (stack_size(stack_a) / 2))
+    tmp = *stack_a;
+    if (index_a <= (stack_size(tmp) / 2))
     {
         while (cont < index_a)
         {
-            rotate(&stack_a, 'a');
+            rotate(stack_a, 'a');
             cont++;
         }
     }
     else
     {
+        index_a = stack_size(tmp) - index_a;
         while (cont < index_a)
         {
-            rr(&stack_a, 'a');
+            rr(stack_a, 'a');
             cont++;
         }
     }
 }
 
-void    put_on_top_b(t_stack *stack_b, int index_b)
+void    put_on_top_b(t_stack **stack_b, int index_b)
 {
     int cont;
+    t_stack *tmp;
 
     cont  = 0;
-    if (index_b <= (stack_size(stack_b) / 2))
+    tmp = *stack_b;
+    if (index_b <= (stack_size(tmp) / 2))
     {
         while (cont < index_b)
         {
-            rotate(&stack_b, 'b');
+            rotate(stack_b, 'b');
             cont++;
         }
     }
     else
     {
+        index_b = stack_size(tmp) - index_b;
         while (cont < index_b)
         {
-            rr(&stack_b, 'b');
+            rr(stack_b, 'b');
             cont++;
         }
     }
 }
 
-void    put_on_top(t_stack *stack_a, int index_a, t_stack *stack_b, int index_b)
+void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b)
 {
     int cont;
 
     cont = 0;
     if (index_a != index_b)
     {
-        put_on_top_a(stack_a, index_a);
-        put_on_top_b(stack_b, index_b);
+            put_on_top_a(stack_a, index_a);
+            put_on_top_b(stack_b, index_b);
     }
     else
     {
         while (cont < index_a)
         {
-            rr_ab(&stack_a, &stack_b);
+            rr_ab(stack_a, stack_b);
             cont++;   
         }
     }

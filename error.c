@@ -6,12 +6,13 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/08 13:00:26 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/12 08:48:21 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 void    allocate_error(void)
 {
+        printf("erro na alocacao");
         exit(0);
 }
