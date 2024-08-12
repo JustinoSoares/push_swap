@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/12 12:43:41 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:16:43 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,46 @@ int ft_send_without_verify(t_stack *stack)
     return (0);
 }
 
+static int *calc_cost(int   *tab, t_stack **stack_a, t_stack **stack_b, t_stack *tmp_b)
+{
+    t_aux_sort aux;
+    t_stack *tmp_a;
+    t_stack *tmp_b2;
+
+    tmp_a = *stack_a;
+    tab = malloc(sizeof(int) * (SIZE_TAB + 1));
+    if (!tab)
+    {
+        allocate_error();
+    }
+    tab[VALUE_B] = tmp_b->num;
+    tab[VALUE_DEST] = next_min(tmp_a, tab[VALUE_B]);
+    tab[INDEX_A] = get_index(tmp_a, tab[VALUE_DEST]);
+    if (tab[INDEX_A] <= (stack_size(tmp_a) / 2))
+        aux.opt_a = tab[INDEX_A];
+    else
+        aux.opt_a = stack_size(tmp_a) - tab[INDEX_A];
+    tmp_b2 = *stack_b;
+    tab[INDEX_B] = get_index(tmp_b2, tab[VALUE_B]);
+    if (tab[INDEX_B] <= (stack_size(tmp_b2) / 2))
+        aux.opt_b = tab[INDEX_B];
+    else
+        aux.opt_b = stack_size(tmp_b2) - tab[3];
+    tab[COST] = aux.opt_a + aux.opt_b;
+    return (tab);
+}
+
 void    sort_any(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *tmp_a;
     t_stack *tmp_b;
-    t_stack *tmp_b2;
     t_aux_sort aux;
     int **tab;
-    tmp_a = *stack_a; 
 
+    tmp_a = *stack_a; 
     aux.send_without_verify = ft_send_without_verify(tmp_a);
     while(aux.send_without_verify-- > 0)
-            push(stack_a, stack_b, 'a');
-    tmp_a = *stack_a; 
-    tmp_b = *stack_b;
+        push(stack_a, stack_b, 'a');
     while (stack_size(tmp_a) >= 3)
     {
         tmp_a = *stack_a;
@@ -84,30 +110,12 @@ void    sort_any(t_stack **stack_a, t_stack **stack_b)
         aux.row = 0;
         while (tmp_b)
         {
-            tab[aux.row] = malloc(sizeof(int) * (SIZE_TAB + 1));
-            if (!tab[aux.row])
-            {
-                allocate_error();
-            }
-                tab[aux.row][VALUE_B] = tmp_b->num;
-                tmp_b = tmp_b->next;
-                tab[aux.row][VALUE_DEST] = next_min(tmp_a, tab[aux.row][VALUE_B]);
-                tab[aux.row][INDEX_A] = get_index(tmp_a, tab[aux.row][VALUE_DEST]);
-                if (tab[aux.row][INDEX_A] <= (stack_size(tmp_a) / 2))
-                    aux.opt_a = tab[aux.row][INDEX_A];
-                else
-                    aux.opt_a = stack_size(tmp_a) - tab[aux.row][2];
-                tmp_b2 = *stack_b;
-                tab[aux.row][INDEX_B] = get_index(tmp_b2, tab[aux.row][VALUE_B]);
-                if (tab[aux.row][INDEX_B] <= (stack_size(tmp_b2) / 2))
-                    aux.opt_b = tab[aux.row][INDEX_B];
-                else
-                    aux.opt_b = stack_size(tmp_b2) - tab[aux.row][3];
-                tab[aux.row][COST] = aux.opt_a + aux.opt_b;
-                aux.row++;
+            tab[aux.row] = calc_cost(tab[aux.row], stack_a, stack_b, tmp_b);
+            tmp_b = tmp_b->next;
+            aux.row++;
         }
         aux.index_cheaper = ft_index_cheaper(tab);
-        put_on_top(stack_a, tab[aux.index_cheaper][2], stack_b, tab[aux.index_cheaper][3]);
+        put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b, tab[aux.index_cheaper][INDEX_B]);
         push(stack_a, stack_b, 'a');
     }
 }

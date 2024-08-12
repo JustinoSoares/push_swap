@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/12 11:43:33 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/12 12:45:31 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,13 +179,13 @@ int ft_index_cheaper(int **tab)
     
     cont = 0;
     index  = 0;
-    cost = tab[0][4];
+    cost = tab[0][COST];
     /// seria while
     while (tab[cont])
     {
-        if (cost > tab[cont][4])
+        if (cost > tab[cont][COST])
         {
-            cost = tab[cont][4];
+            cost = tab[cont][COST];
             index++;
         }
         cont++;
