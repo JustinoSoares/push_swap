@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/12 12:25:27 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/14 00:41:30 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <stdio.h>
 
 #define SIZE_TAB 5
-# define VALUE_B 0
-#define  VALUE_DEST 1
+# define TARGET 0
+#define  DEST 1
 #define INDEX_A 2
 #define INDEX_B 3
 #define COST 4

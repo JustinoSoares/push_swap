@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/12 12:45:31 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/14 00:54:09 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int next_max(t_stack *stack, int num)
         result = min_value(tab);
     }
     else 
-        result = next_min(stack, num);
+        result = min_value(stack);
     return (result);
 }
 
@@ -153,7 +153,7 @@ int next_min(t_stack *stack, int num)
         result = max_value(tab);
     }
     else
-        result = next_max(stack, num);
+        result = max_value(stack);
     return (result);
 }
 
@@ -250,18 +250,15 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
     int cont;
 
     cont = 0;
-    if (index_a != index_b)
+    if ((index_a + 1) == stack_size(*stack_a)  && (index_b + 1) == stack_size(*stack_b))
     {
-            put_on_top_a(stack_a, index_a);
-            put_on_top_b(stack_b, index_b);
+            rr_ab(stack_a, stack_b);
+            cont++;  
     }
     else
     {
-        while (cont < index_a)
-        {
-            rr_ab(stack_a, stack_b);
-            cont++;   
-        }
+        put_on_top_a(stack_a, index_a);
+        put_on_top_b(stack_b, index_b);
     }
 }
 
