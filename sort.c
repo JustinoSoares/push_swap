@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 00:42:25 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/14 19:06:52 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    sort_3(t_stack **stack)
         if ((*stack)->num > (*stack)->next->num)
             swap(stack, 'a');
         else
-            rr(stack, 'a');
+            rr_ab(stack, 'a');
     }  
 }
 
@@ -73,7 +73,17 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     if (tab[INDEX_B] <= (stack_size(tmp_b2) / 2))
         aux.opt_b = tab[INDEX_B];
     else
-        aux.opt_b = stack_size(tmp_b2) - tab[3];
+        aux.opt_b = stack_size(tmp_b2) - tab[INDEX_B];
+    if ((tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2) && INDEX_A == INDEX_B))
+    {
+        aux.opt_a = tab[INDEX_A];
+        aux.opt_b = 0;
+    }
+    else if (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2) && (stack_size(*stack_a) - tab[INDEX_A]) == (stack_size(*stack_b) - tab[INDEX_B]))
+    {
+        aux.opt_a = stack_size(*stack_a) - tab[INDEX_A];
+        aux.opt_b = 0;
+    }
     tab[COST] = aux.opt_a + aux.opt_b;
     return (tab);
 }

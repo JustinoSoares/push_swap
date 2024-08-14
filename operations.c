@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/11 17:19:19 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/14 17:27:07 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ void    rotate(t_stack **stack, char ab)
     while (tmp->next)
         tmp = tmp->next;
     tmp->next = new;
-    write(1, "r", 1); 
-    write(1, &ab, 1); 
-    write(1, "\n", 1);
+    if (ab != '\0')
+    {
+        write(1, "r", 1); 
+        write(1, &ab, 1); 
+        write(1, "\n", 1);  
+    }
+    
 }
 
-void    rr(t_stack **stack, char ab)
+void    rr_ab(t_stack **stack, char ab)
 {
     t_stack *tmp;
     int     last_num;
@@ -69,10 +73,16 @@ void    rr(t_stack **stack, char ab)
     }
 }
 
-void    rr_ab(t_stack **stack_a, t_stack **stack_b)
+void    rrr(t_stack **stack_a, t_stack **stack_b)
 {
-    rr(stack_a, 'r');
-    rr(stack_b, '\0');
+    rr_ab(stack_a, 'r');
+    rr_ab(stack_b, '\0');
+}
+
+void    rr(t_stack **stack_a, t_stack **stack_b)
+{
+    rotate(stack_a, 'r');
+    rotate(stack_b, '\0');
 }
 
 void    push(t_stack **stack_from, t_stack **stack_to, char ab)

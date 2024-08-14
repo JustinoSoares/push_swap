@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 00:54:09 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/14 19:21:14 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void    put_on_top_a(t_stack **stack_a, int index_a)
         index_a = stack_size(tmp) - index_a;
         while (cont < index_a)
         {
-            rr(stack_a, 'a');
+            rr_ab(stack_a, 'a');
             cont++;
         }
     }
@@ -239,7 +239,7 @@ void    put_on_top_b(t_stack **stack_b, int index_b)
         index_b = stack_size(tmp) - index_b;
         while (cont < index_b)
         {
-            rr(stack_b, 'b');
+            rr_ab(stack_b, 'b');
             cont++;
         }
     }
@@ -249,11 +249,24 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
 {
     int cont;
 
-    cont = 0;
-    if ((index_a + 1) == stack_size(*stack_a)  && (index_b + 1) == stack_size(*stack_b))
+    if (index_a == index_b && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)))
     {
-            rr_ab(stack_a, stack_b);
-            cont++;  
+        cont = 0;
+        while (cont < index_a)
+        {
+            rr(stack_a, stack_b);
+            cont++;
+        }  
+    }
+    //(index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2))
+    else if (((stack_size(*stack_a)) - index_a) == ((stack_size(*stack_b) - index_b)))
+    {
+        cont  = 0;
+        while (cont < (stack_size(*stack_a) - index_a))
+        {
+            rrr(stack_a, stack_b);
+            cont++;
+        }
     }
     else
     {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 00:41:30 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/14 17:28:26 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_aux_sort
 void    swap(t_stack **stack, char ab);
 void    rotate(t_stack **stack, char ab);
 void    error(t_stack *stack);
-void    rr(t_stack **stack, char ab);
 void    allocate_error(void);
 void    ft_write(t_stack *stack);
 void    append_end(t_stack **stack, int num);
@@ -62,7 +61,9 @@ int ft_index_cheaper(int **tab);
 void    put_on_top_a(t_stack **stack_a, int index_a);
 void    put_on_top_b(t_stack **stack_b, int index_b);
 void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b);
-void    rr_ab(t_stack **stack_a, t_stack **stack_b);
+void    rr_ab(t_stack **stack, char ab);
+void    rrr(t_stack **stack_a, t_stack **stack_b);
+void    rr(t_stack **stack_a, t_stack **stack_b);
 int ft_send_without_verify(t_stack *stack);
 
 #endif
