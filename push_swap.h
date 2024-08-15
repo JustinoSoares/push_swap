@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 17:28:26 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 14:46:24 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct s_aux_sort
     int opt_b;
     int index_cheaper;
     int send_without_verify;
+    int cont;
+    int getter;
+    int aux_cost;
 }   t_aux_sort;
 
 
@@ -65,5 +68,6 @@ void    rr_ab(t_stack **stack, char ab);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 void    rr(t_stack **stack_a, t_stack **stack_b);
 int ft_send_without_verify(t_stack *stack);
+int index_less(int a, int b);
 
 #endif

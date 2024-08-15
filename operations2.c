@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 19:21:14 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 15:49:10 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,22 +244,42 @@ void    put_on_top_b(t_stack **stack_b, int index_b)
         }
     }
 }
+int index_less(int a, int b)
+{
+    if (a == 0 || b == 0)
+        return (0);
+    if (a < b)
+        return (a);
+    return (b);
+}
+
+int index_biggest(int a, int b)
+{
+    if (a > b)
+        return (a);
+    return (b);
+}
 
 void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b)
 {
     int cont;
+    int less;
 
-    if (index_a == index_b && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)))
+    //(index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2))
+    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)))
     {
         cont = 0;
-        while (cont < index_a)
+        less = index_less(index_a, index_b);
+        while (cont < less)
         {
             rr(stack_a, stack_b);
             cont++;
-        }  
+        }
+        index_a = index_a - less;
+        index_b = index_b - less;
     }
     //(index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2))
-    else if (((stack_size(*stack_a)) - index_a) == ((stack_size(*stack_b) - index_b)))
+    else if (((stack_size(*stack_a)) - index_a) == ((stack_size(*stack_b)) - index_b) && (index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2)))
     {
         cont  = 0;
         while (cont < (stack_size(*stack_a) - index_a))
@@ -268,10 +288,10 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
             cont++;
         }
     }
-    else
-    {
+    //else
+    //{
         put_on_top_a(stack_a, index_a);
         put_on_top_b(stack_b, index_b);
-    }
+    //}
 }
 

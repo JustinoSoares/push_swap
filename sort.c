@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 19:06:52 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 15:20:43 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     t_stack *tmp_b;
     t_stack *tmp_b2;
 
+    aux.cont = 0;
     tmp_b = *stack_b;
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
@@ -74,17 +75,31 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
         aux.opt_b = tab[INDEX_B];
     else
         aux.opt_b = stack_size(tmp_b2) - tab[INDEX_B];
-    if ((tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2) && INDEX_A == INDEX_B))
+    //(tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2)
+    aux.aux_cost = aux.opt_a + aux.opt_b;
+    if ((INDEX_A != 0 && INDEX_B != 0)  && (tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2)))
     {
-        aux.opt_a = tab[INDEX_A];
-        aux.opt_b = 0;
+        if (aux.opt_a < aux.opt_b)
+            aux.getter = aux.opt_a;
+        else
+            aux.getter = aux.opt_b;
+        while (aux.cont < aux.getter)
+            aux.cont++;
     }
-    else if (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2) && (stack_size(*stack_a) - tab[INDEX_A]) == (stack_size(*stack_b) - tab[INDEX_B]))
+    // (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2))
+    else if ((stack_size(*stack_a) - tab[INDEX_A]) == (stack_size(*stack_b) - tab[INDEX_B]) && (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2)))
     {
-        aux.opt_a = stack_size(*stack_a) - tab[INDEX_A];
-        aux.opt_b = 0;
+        aux.cont = 0;
+        if (aux.opt_a < aux.opt_b)
+            aux.getter = aux.opt_a;
+        else
+            aux.getter = aux.opt_b;
+        while (aux.cont < aux.getter)
+            aux.cont++;
     }
-    tab[COST] = aux.opt_a + aux.opt_b;
+    tab[COST] = (aux.opt_a + aux.opt_b) - aux.cont;
+    if (aux.aux_cost < tab[COST])
+        tab[COST] = aux.aux_cost;
     return (tab);
 }
 
