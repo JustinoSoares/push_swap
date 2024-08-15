@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 15:20:43 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 21:55:07 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     t_stack *tmp_b2;
 
     aux.cont = 0;
+    aux.is_duple = 0;
     tmp_b = *stack_b;
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
@@ -98,8 +99,12 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
             aux.cont++;
     }
     tab[COST] = (aux.opt_a + aux.opt_b) - aux.cont;
+    tab[IS_DUPLE] = 0;
     if (aux.aux_cost < tab[COST])
-        tab[COST] = aux.aux_cost;
+    {
+        tab[COST] = aux.aux_cost; 
+        tab[IS_DUPLE] = 1;
+    }
     return (tab);
 }
 
@@ -133,7 +138,7 @@ void    sort_goo_b(t_stack **stack_a, t_stack **stack_b)
             aux.row++;
         }
         aux.index_cheaper = ft_index_cheaper(tab);
-        put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b, tab[aux.index_cheaper][INDEX_B]);
+        put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b, tab[aux.index_cheaper][INDEX_B], tab[aux.index_cheaper][IS_DUPLE]);
         push(stack_a, stack_b, 'b');
     }
     put_on_top_b(stack_b, get_index((*stack_b), max_value(*stack_b)));
@@ -188,7 +193,7 @@ void    sort_goo_a(t_stack **stack_a, t_stack **stack_b)
             aux.row++;
         }
         aux.index_cheaper = ft_index_cheaper(tab);
-        put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b, tab[aux.index_cheaper][INDEX_B]);
+        put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b, tab[aux.index_cheaper][INDEX_B], tab[aux.index_cheaper][IS_DUPLE]);
         push(stack_b, stack_a, 'a');
         tmp_b = *stack_b;
     }

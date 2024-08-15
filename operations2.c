@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 15:49:10 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 21:59:23 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,13 +260,14 @@ int index_biggest(int a, int b)
     return (b);
 }
 
-void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b)
+void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b, int is_duple)
 {
     int cont;
     int less;
+    
 
     //(index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2))
-    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)))
+    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)) && is_duple == 0)
     {
         cont = 0;
         less = index_less(index_a, index_b);

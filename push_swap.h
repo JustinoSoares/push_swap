@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 14:46:24 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/15 21:52:29 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define SIZE_TAB 5
+#define SIZE_TAB 6
 # define TARGET 0
 #define  DEST 1
 #define INDEX_A 2
 #define INDEX_B 3
 #define COST 4
+#define IS_DUPLE 5
 typedef struct s_stack
 {
     int num;
@@ -39,6 +40,7 @@ typedef struct s_aux_sort
     int cont;
     int getter;
     int aux_cost;
+    int is_duple;
 }   t_aux_sort;
 
 
@@ -63,7 +65,7 @@ int get_index(t_stack *stack, int num);
 int ft_index_cheaper(int **tab);
 void    put_on_top_a(t_stack **stack_a, int index_a);
 void    put_on_top_b(t_stack **stack_b, int index_b);
-void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b);
+void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b, int is_duple);
 void    rr_ab(t_stack **stack, char ab);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 void    rr(t_stack **stack_a, t_stack **stack_b);
