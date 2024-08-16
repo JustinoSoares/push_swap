@@ -6,7 +6,7 @@
 #    By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 11:42:26 by jsoares           #+#    #+#              #
-#    Updated: 2024/08/09 15:40:11 by jsoares          ###   ########.fr        #
+#    Updated: 2024/08/16 14:14:36 by jsoares          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 ARQ = main.c operations.c \
 	operations2.c error.c \
-	sort.c
+	sort.c sort_big.c
 OBJ = main.o operations.o \
 	operations2.o error.o \
-	sort.o
+	sort.o sort_big.o
 
 all: $(NAME)	
 

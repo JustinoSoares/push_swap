@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 21:55:07 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/16 16:17:24 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     t_stack *tmp_b2;
 
     aux.cont = 0;
-    aux.is_duple = 0;
     tmp_b = *stack_b;
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
@@ -77,7 +76,7 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     else
         aux.opt_b = stack_size(tmp_b2) - tab[INDEX_B];
     //(tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2)
-    aux.aux_cost = aux.opt_a + aux.opt_b;
+    tab[COST] = aux.opt_a + aux.opt_b;
     if ((INDEX_A != 0 && INDEX_B != 0)  && (tab[INDEX_A] <= (stack_size(*stack_a) / 2) && tab[INDEX_B] <= (stack_size(*stack_b) / 2)))
     {
         if (aux.opt_a < aux.opt_b)
@@ -88,7 +87,7 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
             aux.cont++;
     }
     // (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2))
-    else if ((stack_size(*stack_a) - tab[INDEX_A]) == (stack_size(*stack_b) - tab[INDEX_B]) && (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2)))
+    else if ((INDEX_A != 0 && INDEX_B != 0) && (tab[INDEX_A] > (stack_size(*stack_a) / 2) && tab[INDEX_B] > (stack_size(*stack_b) / 2)))
     {
         aux.cont = 0;
         if (aux.opt_a < aux.opt_b)
@@ -98,11 +97,10 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
         while (aux.cont < aux.getter)
             aux.cont++;
     }
-    tab[COST] = (aux.opt_a + aux.opt_b) - aux.cont;
     tab[IS_DUPLE] = 0;
-    if (aux.aux_cost < tab[COST])
+    if (tab[COST] > (aux.opt_a + aux.opt_b - aux.cont))
     {
-        tab[COST] = aux.aux_cost; 
+        tab[COST] = (aux.opt_a + aux.opt_b) - aux.cont;
         tab[IS_DUPLE] = 1;
     }
     return (tab);
@@ -202,6 +200,8 @@ void    sort_goo_a(t_stack **stack_a, t_stack **stack_b)
 
 void    sort_any(t_stack **stack_a, t_stack **stack_b)
 {
-        sort_goo_b(stack_a, stack_b);
-        sort_goo_a(stack_a, stack_b);
+        sort_big(stack_a, stack_b);
+        selection(stack_a, stack_a);
+        //sort_goo_b(stack_a, stack_b);
+        //sort_goo_a(stack_a, stack_b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 21:59:23 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/16 13:30:52 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,7 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
     
 
     //(index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2))
-    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)) && is_duple == 0)
+    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)) && is_duple == 1)
     {
         cont = 0;
         less = index_less(index_a, index_b);
@@ -280,19 +280,26 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
         index_b = index_b - less;
     }
     //(index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2))
-    else if (((stack_size(*stack_a)) - index_a) == ((stack_size(*stack_b)) - index_b) && (index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2)))
+    else if ((index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2)) && is_duple == 1)
     {
+        if (stack_size(*stack_a) - index_a < stack_size(*stack_a) - index_a)
+            less = stack_size(*stack_a) - index_a;
+        else
+            less = stack_size(*stack_b) - index_b;
         cont  = 0;
-        while (cont < (stack_size(*stack_a) - index_a))
+        while (cont < less)
         {
             rrr(stack_a, stack_b);
             cont++;
         }
+        index_a = index_a - less;
+        index_b = index_b - less;   
     }
     //else
     //{
         put_on_top_a(stack_a, index_a);
         put_on_top_b(stack_b, index_b);
+        
     //}
 }
 

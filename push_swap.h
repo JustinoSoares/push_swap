@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/15 21:52:29 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/16 16:17:00 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,9 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 void    rr(t_stack **stack_a, t_stack **stack_b);
 int ft_send_without_verify(t_stack *stack);
 int index_less(int a, int b);
+int piv(t_stack **stack);
+void    sort_big(t_stack **stack_a, t_stack **stack_b);
+int last_num(t_stack **stack);
+void    selection(t_stack **stack_a, t_stack **stack_b);
 
 #endif
