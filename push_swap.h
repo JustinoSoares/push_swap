@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 00:33:19 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/18 15:15:11 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_aux_sort
 void    swap(t_stack **stack, char ab);
 void    rotate(t_stack **stack, char ab);
 void    error(t_stack *stack);
-void    allocate_error(void);
+void    allocate_error(t_stack **stack);
 void    ft_write(t_stack *stack);
 void    append_end(t_stack **stack, int num);
 void    append_start(t_stack **stack, int num);

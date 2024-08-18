@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 01:45:13 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/18 12:45:42 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,4 +272,3 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
     put_on_top_a(stack_a, index_a);
     put_on_top_b(stack_b, index_b);
 }
-

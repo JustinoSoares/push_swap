@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 01:27:30 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/18 14:03:29 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static int get_cost_rr(int opt_a, int opt_b, int getter)
             cont++;
     return (cont);
 }
+
 static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_stack *tmp_a)
 {
     t_aux_sort aux;
@@ -95,11 +96,11 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     return (tab);
 }
 
-int is_sort_3(t_stack *stack)
+int is_sort_3(t_stack **stack)
 {
-    if (stack_size(stack) == 3)
+    if (stack_size(*stack) == 3)
     {
-        sort_3(&stack);
+        sort_3(stack);
         return (1);
     }
     else
@@ -114,7 +115,7 @@ void    sort_goo_b(t_stack **stack_a, t_stack **stack_b)
     ft_send_without_verify(stack_a, stack_b);
     while (stack_size(*stack_a) >= 3)
     {
-        if (is_sort_3(*stack_a))
+        if (is_sort_3(stack_a))
             break ;
         tab = malloc(sizeof(int *) * (stack_size(*stack_a) + 1));
         if (!tab)
@@ -138,7 +139,6 @@ void    sort_goo_b(t_stack **stack_a, t_stack **stack_b)
 static int *calc_cost_goo_a(int *tab, t_stack **stack_a, t_stack **stack_b, t_stack *tmp_b)
 {
     t_aux_sort aux;
-
 
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
