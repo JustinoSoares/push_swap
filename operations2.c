@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/16 13:30:52 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 01:45:13 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,13 +180,12 @@ int ft_index_cheaper(int **tab)
     cont = 0;
     index  = 0;
     cost = tab[0][COST];
-    /// seria while
     while (tab[cont])
     {
         if (cost > tab[cont][COST])
         {
             cost = tab[cont][COST];
-            index++;
+            index = cont;
         }
         cont++;
     }
@@ -253,21 +252,12 @@ int index_less(int a, int b)
     return (b);
 }
 
-int index_biggest(int a, int b)
-{
-    if (a > b)
-        return (a);
-    return (b);
-}
-
-void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b, int is_duple)
+void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b)
 {
     int cont;
     int less;
-    
 
-    //(index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2))
-    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)) && is_duple == 1)
+    if (index_a != 0 && index_b != 0 && (index_b <= (stack_size(*stack_b) / 2) && index_a <= (stack_size(*stack_a) / 2)))
     {
         cont = 0;
         less = index_less(index_a, index_b);
@@ -279,27 +269,7 @@ void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_
         index_a = index_a - less;
         index_b = index_b - less;
     }
-    //(index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2))
-    else if ((index_b > (stack_size(*stack_b) / 2) && index_a > (stack_size(*stack_a) / 2)) && is_duple == 1)
-    {
-        if (stack_size(*stack_a) - index_a < stack_size(*stack_a) - index_a)
-            less = stack_size(*stack_a) - index_a;
-        else
-            less = stack_size(*stack_b) - index_b;
-        cont  = 0;
-        while (cont < less)
-        {
-            rrr(stack_a, stack_b);
-            cont++;
-        }
-        index_a = index_a - less;
-        index_b = index_b - less;   
-    }
-    //else
-    //{
-        put_on_top_a(stack_a, index_a);
-        put_on_top_b(stack_b, index_b);
-        
-    //}
+    put_on_top_a(stack_a, index_a);
+    put_on_top_b(stack_b, index_b);
 }
 

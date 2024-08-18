@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/16 16:17:00 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 00:33:19 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ int get_index(t_stack *stack, int num);
 int ft_index_cheaper(int **tab);
 void    put_on_top_a(t_stack **stack_a, int index_a);
 void    put_on_top_b(t_stack **stack_b, int index_b);
-void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b, int is_duple);
+void    put_on_top(t_stack **stack_a, int index_a, t_stack **stack_b, int index_b);
 void    rr_ab(t_stack **stack, char ab);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 void    rr(t_stack **stack_a, t_stack **stack_b);
-int ft_send_without_verify(t_stack *stack);
 int index_less(int a, int b);
 int piv(t_stack **stack);
 void    sort_big(t_stack **stack_a, t_stack **stack_b);

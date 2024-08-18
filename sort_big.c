@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 14:14:10 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/16 16:16:18 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/17 21:14:02 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void    sort_big(t_stack **stack_a, t_stack **stack_b)
 void    selection(t_stack **stack_a, t_stack **stack_b)
 {
     while (stack_size(*stack_b) > 0)
-    {
-        put_on_top_b(stack_b, max_value(*stack_a));
+    { 
+        put_on_top_b(stack_b, get_index(*stack_b, max_value(*stack_b)));
         push(stack_b, stack_a, 'a');
     }
 }
