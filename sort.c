@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 14:03:29 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 19:59:54 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int *calc_cost_goo_b(int   *tab, t_stack **stack_a, t_stack **stack_b, t_
     aux.getter = 0;
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
-        allocate_error();
+        return (NULL);
     tab[TARGET] = tmp_a->num;
     tab[DEST] = next_min(*stack_b, tab[TARGET]);
     tab[INDEX_A] = get_index((*stack_a), tab[TARGET]);
@@ -119,7 +119,7 @@ void    sort_goo_b(t_stack **stack_a, t_stack **stack_b)
             break ;
         tab = malloc(sizeof(int *) * (stack_size(*stack_a) + 1));
         if (!tab)
-            allocate_error();
+            return ;
         aux.row = 0;
         tmp_a = *stack_a;
         while (tmp_a)
@@ -143,7 +143,7 @@ static int *calc_cost_goo_a(int *tab, t_stack **stack_a, t_stack **stack_b, t_st
     tab = malloc(sizeof(int) * (SIZE_TAB + 1));
     if (!tab)
     {
-        allocate_error();
+        allocate_error(stack_a);
     }
     tab[TARGET] = tmp_b->num;
     tab[DEST] = next_max(*stack_a, tab[TARGET]);
@@ -170,7 +170,7 @@ void    sort_goo_a(t_stack **stack_a, t_stack **stack_b)
     {
         tab = malloc(sizeof(int *) * (stack_size(*stack_b) + 1));
         if (!tab)
-            allocate_error();
+            return ;
         aux.row = 0;
         tmp_b = *stack_b;
         while (tmp_b)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+         #
+#    By: justinosoares <justinosoares@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 11:42:26 by jsoares           #+#    #+#              #
-#    Updated: 2024/08/18 14:33:35 by jsoares          ###   ########.fr        #
+#    Updated: 2024/08/18 23:18:07 by justinosoar      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 ARQ = main.c operations.c \
 	operations2.c error.c \
-	sort.c
+	sort.c checker.c utils.c
 OBJ = main.o operations.o \
 	operations2.o error.o \
-	sort.o
+	sort.o checker.o utils.o
 
 all: $(NAME)	
 

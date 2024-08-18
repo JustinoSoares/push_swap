@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 12:45:42 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 19:58:24 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    append_start(t_stack **stack, int num)
 
     new = malloc(sizeof(t_stack));
     if (!new)
-        allocate_error();
+        allocate_error(stack);
     new->num = num;
     new->next = *stack;
     *stack = new;
@@ -50,7 +50,7 @@ void    append_end(t_stack **stack, int num)
     
     new = malloc(sizeof(t_stack));
     if (!new)
-        allocate_error();
+        allocate_error(stack);
     new->num = num;
     new->next = NULL;
     
@@ -118,7 +118,7 @@ int next_max(t_stack *stack, int num)
     {
          tab = malloc(sizeof(t_stack));
          if (!tab)
-            allocate_error();
+            allocate_error(&stack);
         tab = NULL;
         while (stack)
         {
@@ -142,7 +142,7 @@ int next_min(t_stack *stack, int num)
     {
         tab = malloc(sizeof(t_stack));
         if (!tab)
-            allocate_error();
+            allocate_error(&stack);
         tab = NULL;
         while (stack)
         {

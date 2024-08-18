@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/14 17:27:07 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 19:58:38 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    rotate(t_stack **stack, char ab)
     
     new = malloc(sizeof(t_stack));
     if (!new)
-        allocate_error();
+        allocate_error(stack);
     new->num = (*stack)->num;
     new->next  = NULL;
     *stack = (*stack)->next;

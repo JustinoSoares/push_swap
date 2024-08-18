@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 15:15:11 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/18 23:20:32 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #define SIZE_TAB 6
 # define TARGET 0
@@ -46,7 +47,6 @@ typedef struct s_aux_sort
 
 void    swap(t_stack **stack, char ab);
 void    rotate(t_stack **stack, char ab);
-void    error(t_stack *stack);
 void    allocate_error(t_stack **stack);
 void    ft_write(t_stack *stack);
 void    append_end(t_stack **stack, int num);
@@ -74,5 +74,10 @@ int piv(t_stack **stack);
 void    sort_big(t_stack **stack_a, t_stack **stack_b);
 int last_num(t_stack **stack);
 void    selection(t_stack **stack_a, t_stack **stack_b);
+void    ft_error(void);
+int is_dup(t_stack *stack);
+int	check_error(char **argv, int i, int j);
+int	ft_atoi(const char *str);
+int	is_digit(int c);
 
 #endif
