@@ -6,11 +6,12 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:12:03 by justinosoar       #+#    #+#             */
-/*   Updated: 2024/08/19 11:03:21 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/19 16:03:42 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int	ft_atoi(const char *str)
 {
 	int				mod;
@@ -40,23 +41,23 @@ int	ft_atoi(const char *str)
 	return (mod * i);
 }
 
-char *ft_strncpy(char *s1, char *s2, int n)
+char	*ft_strncpy(char *s1, char *s2, int n)
 {
-	int i = -1;
+	int	i;
 
+	i = -1;
 	while (++i < n && s2[i])
 		s1[i] = s2[i];
 	s1[i] = '\0';
 	return (s1);
 }
 
-
-char **ft_split(char *str)
+char	**ft_split(char *str)
 {
-	int i;
-	int j;
-	int k;
-	char **split;
+	int		i;
+	int		j;
+	int		k;
+	char	**split;
 
 	i = 0;
 	k = 0;

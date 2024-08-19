@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:34:11 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 07:57:53 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/19 11:20:39 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ int	is_space(int c)
 	return (0);
 }
 
-
 int	check_error(char **argv, int row, int col)
 {
-    row = 1;
+	row = 1;
 	while (argv[row])
 	{
 		col = 0;
 		while ((argv[row][col] != '\0'))
 		{
-            if (argv[row][col] == '\0')
-					break ;
+			if (argv[row][col] == '\0')
+				break ;
 			if (is_sign(argv[row][col]))
 			{
 				col++;
@@ -51,7 +50,7 @@ int	check_error(char **argv, int row, int col)
 					return (0);
 			}
 			else if (!is_digit(argv[row][col]) && !is_space(argv[row][col]))
-                return (0);
+				return (0);
 			col++;
 		}
 		row++;
@@ -59,26 +58,25 @@ int	check_error(char **argv, int row, int col)
 	return (1);
 }
 
-
-int is_dup(t_stack *stack)
+int	is_dup(t_stack *stack)
 {
-    t_stack *getter;
-    
-    while(stack)
-    {
-        getter = stack->next;
-        while (getter)
-        {
-            if (stack->num == getter->num)
-                return(0);
-            getter = getter->next;
-        }
-        stack = stack->next;
-    }
-    return (1);
+	t_stack	*getter;
+
+	while (stack)
+	{
+		getter = stack->next;
+		while (getter)
+		{
+			if (stack->num == getter->num)
+				return (0);
+			getter = getter->next;
+		}
+		stack = stack->next;
+	}
+	return (1);
 }
 
-int	is_all_right(t_stack *stack,char **argv, int row, int col)
+int	is_all_right(t_stack *stack, char **argv, int row, int col)
 {
 	if (check_error(argv, row, col) && is_dup(stack))
 		return (1);
