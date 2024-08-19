@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:34:11 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 23:20:02 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/19 07:57:53 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ int	is_space(int c)
 }
 
 
-int	check_error(char **argv, int i, int j)
+int	check_error(char **argv, int row, int col)
 {
-    i = 1;
-	while (argv[i])
+    row = 1;
+	while (argv[row])
 	{
-		j = 0;
-		while ((argv[i][j] != '\0'))
+		col = 0;
+		while ((argv[row][col] != '\0'))
 		{
-            if (argv[i][j] == '\0')
+            if (argv[row][col] == '\0')
 					break ;
-			if (is_sign(argv[i][j]))
+			if (is_sign(argv[row][col]))
 			{
-				j++;
-				if (!is_digit(argv[i][j]))
+				col++;
+				if (!is_digit(argv[row][col]))
 					return (0);
 			}
-			else if (!is_digit(argv[i][j]) && !is_space(argv[i][j]))
+			else if (!is_digit(argv[row][col]) && !is_space(argv[row][col]))
                 return (0);
-			j++;
+			col++;
 		}
-		i++;
+		row++;
 	}
 	return (1);
 }
@@ -76,4 +76,11 @@ int is_dup(t_stack *stack)
         stack = stack->next;
     }
     return (1);
+}
+
+int	is_all_right(t_stack *stack,char **argv, int row, int col)
+{
+	if (check_error(argv, row, col) && is_dup(stack))
+		return (1);
+	return (0);
 }

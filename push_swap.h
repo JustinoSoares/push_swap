@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/18 23:20:32 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/19 09:00:35 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int last_num(t_stack **stack);
 void    selection(t_stack **stack_a, t_stack **stack_b);
 void    ft_error(void);
 int is_dup(t_stack *stack);
-int	check_error(char **argv, int i, int j);
+int	check_error(char **argv, int row, int col);
 int	ft_atoi(const char *str);
 int	is_digit(int c);
+char	**ft_split(char *str);
+int	is_all_right(t_stack *stack,char **argv, int row, int col);
 
 #endif
