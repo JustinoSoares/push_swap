@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 12:37:45 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/19 19:07:31 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ void	push(t_stack **stack_from, t_stack **stack_to, char ab)
 	top = (*stack_from)->num;
 	pop_start(stack_from);
 	append_start(stack_to, top);
-	write(1, "p", 1);
-	write(1, &ab, 1);
-	write(1, "\n", 1);
+	if (ab != '\0')
+	{
+		write(1, "p", 1);
+		write(1, &ab, 1);
+		write(1, "\n", 1);
+	}
 }
