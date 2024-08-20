@@ -6,107 +6,115 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:46:36 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 16:36:06 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/20 11:30:55 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../include/bonus.h"
 
-char	*append_buffer(char *dest, char *src, ssize_t len)
-{
-	char	*new_str;
-	size_t	dest_len;
-
-	if (!dest)
-		dest_len = 0;
-	else
-		dest_len = strlen(dest);
-	new_str = malloc(dest_len + len + 1);
-	if (!new_str)
-		return (NULL);
-	if (dest)
-	{
-		strcpy(new_str, dest);
-		free(dest);
-	}
-	memcpy(new_str + dest_len, src, len);
-	new_str[dest_len + len] = '\0';
-	return (new_str);
-}
-
-char	**read_data(void)
-{
-	char	buffer[100];
-	ssize_t	bytes_read;
-	char	*data;
-	char	**getter;
-
-	data = NULL;
-	getter = NULL;
-	while ((bytes_read = read(0, buffer, sizeof(buffer) - 1)) > 0)
-	{
-		buffer[bytes_read] = '\0';
-		data = append_buffer(data, buffer, bytes_read);
-		if (!data)
-			return (NULL);
-	}
-	if (bytes_read == -1)
-	{
-		free(data);
-		return (NULL);
-	}
-	getter = ft_split(data);
-	free(data);
-	return (getter);
-}
-
-static void	operations(t_stack **stack_a, t_stack **stack_b, char **getter)
+static int	find_newline(const char *s)
 {
 	int	i;
 
-	(void)stack_a;
-	(void)stack_b;
 	i = 0;
-	while (getter[i])
+	while (s[i])
 	{
-		/*if (!ft_strcmp(getter[i], "sa"))
-			swap(stack_a, 'a');
-		else if (!ft_strcmp(getter[i], "rra"))
-			rr_ab(stack_a, 'a');
-		else if (!ft_strcmp(getter[i], "rrb"))
-			rr_ab(stack_b, 'b');
-		else if (!ft_strcmp(getter[i], "ra"))
-			rotate(stack_a, 'a');
-		else if (!ft_strcmp(getter[i], "rb"))
-			rotate(stack_b, 'b');
-		else if (!ft_strcmp(getter[i], "rr"))
-			rr(stack_a, stack_b);
-		else if (!ft_strcmp(getter[i], "rrr"))
-			rrr(stack_a, stack_b);
-		else if (!ft_strcmp(getter[i], "pb"))
-			push(stack_a, stack_b, 'b');
-		else if (!ft_strcmp(getter[i], "pa"))
-			push(stack_b, stack_a, 'a'); */
-		printf("%s\n", getter[i]);
+		if (s[i] == '\n')
+			return (i);
 		i++;
 	}
+	return (-1);
+}
+
+// Função que lê linha por linha e retorna a próxima linha.
+char	*get_next_line(int fd)
+{
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	int			bytes_read;
+	int			newline_index;
+
+	line = NULL;
+	while (1)
+	{
+		if ((newline_index = find_newline(buffer)) >= 0)
+		{
+			line = strndup(buffer, newline_index + 1);
+			memmove(buffer, buffer + newline_index + 1, strlen(buffer)
+				- (newline_index - 1));
+			break ;
+		}
+		else if ((bytes_read = read(fd, buffer + strlen(buffer), BUFFER_SIZE
+					- strlen(buffer))) <= 0)
+		{
+			if (strlen(buffer) > 0)
+				line = strdup(buffer);
+			else
+				line = NULL;
+			buffer[0] = '\0';
+			break ;
+		}
+		buffer[bytes_read] = '\0';
+	}
+	return (line);
+}
+
+static void	operations(t_stack **stack_a, t_stack **stack_b, char *getter)
+{
+	if (!ft_strcmp(getter, "sa\n"))
+		swap(stack_a, '\0');
+	if (!ft_strcmp(getter, "sb\n"))
+		swap(stack_b, '\0');
+	else if (!ft_strcmp(getter, "rra\n"))
+		rr_ab(stack_a, '\0');
+	else if (!ft_strcmp(getter, "rrb\n"))
+		rr_ab(stack_b, '\0');
+	else if (!ft_strcmp(getter, "ra\n"))
+		rotate(stack_a, '\0');
+	else if (!ft_strcmp(getter, "rb\n"))
+		rotate(stack_b, '\0');
+	else if (!ft_strcmp(getter, "rr\n"))
+		rr_bonus(stack_a, stack_b);
+	else if (!ft_strcmp(getter, "rrr\n"))
+		rrr_bonus(stack_a, stack_b);
+	else if (!ft_strcmp(getter, "pb\n"))
+		push_bonus(stack_a, stack_b);
+	else if (!ft_strcmp(getter, "pa\n"))
+		push_bonus(stack_b, stack_a);
+	else if (!ft_strcmp(getter, "pa"))
+		push_bonus(stack_b, stack_a);
+	else if (!ft_strcmp(getter, "p"))
+		push_bonus(stack_b, stack_a);
 }
 
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	**getter;
+	char	*getter;
+	int		row;
+	int		col;
 
+	row = 0;
+	col = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	stack_a = execute(ac, av);
-	getter = read_data();
-	operations(&stack_a, &stack_b, getter);
-	if (is_sorted(&stack_a))
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
-	// ft_write(stack_a);
-	// ft_write(stack_b);
+	if (stack_a && !is_sorted(&stack_a) && ac >= 2)
+	{
+		if (!is_all_right(stack_a, av, row, col))
+			ft_error();
+		while (1)
+		{
+			getter = get_next_line(0);
+			if (!getter)
+				break ;
+			operations(&stack_a, &stack_b, getter);
+			free(getter);
+		}
+		if (is_sorted(&stack_a) && stack_b == NULL)
+			write(1, "OK\n", 3);
+		else
+			write(1, "KO\n", 3);
+	}
 }

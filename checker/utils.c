@@ -5,12 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 12:16:36 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 15:47:48 by jsoares          ###   ########.fr       */
+/*   Created: 2024/08/20 11:32:14 by jsoares           #+#    #+#             */
+/*   Updated: 2024/08/20 11:39:32 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../include/bonus.h"
+
+void	rrr_bonus(t_stack **stack_a, t_stack **stack_b)
+{
+	rr_ab(stack_a, '\0');
+	rr_ab(stack_b, '\0');
+}
+
+void	rr_bonus(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate(stack_a, '\0');
+	rotate(stack_b, '\0');
+}
+
+void	push_bonus(t_stack **stack_from, t_stack **stack_to, char ab)
+{
+	int	top;
+
+	top = (*stack_from)->num;
+	pop_start(stack_from);
+	append_start(stack_to, top);
+}
 
 t_stack	*execute(int ac, char **av)
 {
