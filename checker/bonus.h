@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:46:51 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 15:48:30 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/19 16:38:41 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 int		ft_strcmp(char *s1, char *s2);
 char	**read_data(void);
