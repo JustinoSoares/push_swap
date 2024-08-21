@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 16:33:29 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 20:56:22 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ static int	*calc_cost_goo_a(int *tab, t_stack **stack_a, t_stack **stack_b,
 	tab = malloc(sizeof(int) * (SIZE_TAB));
 	if (!tab)
 	{
-		free(tab);
 		ft_error(stack_a);
 		ft_error(stack_b);
 	}

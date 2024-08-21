@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/20 15:22:59 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 20:40:20 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_free(t_stack **stack)
 	while ((*stack)->next)
 	{
 		node = *stack;
-		*stack = (*stack)->next;
 		free(node);
+		*stack = (*stack)->next;
 	}
 	free(*stack);
 }
@@ -32,15 +32,15 @@ void	free_stack(t_stack *stack)
 	while (stack)
 	{
 		temp = stack;
-		stack = stack->next;
 		free(temp);
+		stack = stack->next;
 	}
 }
 
 void	ft_error(t_stack **stack)
 {
 	write(1, "Error\n", 6);
-	ft_free(stack);
+	free_stack(*stack);
 	exit(1);
 }
 

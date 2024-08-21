@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 16:44:55 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 21:00:41 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	append_start(t_stack **stack, int num)
 	new->num = num;
 	new->next = *stack;
 	*stack = new;
-	free(new);
 }
 
 void	append_end(t_stack **stack, int num)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 16:49:36 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 21:44:40 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	if (ac < 2)
 		return (0);
-	stack_a = execute(ac, av);
-	if (!is_all_right(stack_a, av, row, col))
+	if (!check_error(av, row, col))
+	{
 		ft_error(&stack_a);
-	if (!is_sorted(&stack_a))
+		return (0);
+	}
+	stack_a = execute(ac, av);
+	if (!is_sorted(&stack_a) && !is_dup(stack_a))
 	{
 		if (stack_size(stack_a) > 3)
 			sort_any(&stack_a, &stack_b);
