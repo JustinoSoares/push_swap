@@ -6,11 +6,24 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/19 12:48:31 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 16:49:36 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_free_char(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 t_stack	*execute(int ac, char **av)
 {
@@ -28,6 +41,7 @@ t_stack	*execute(int ac, char **av)
 			append_end(&stack_a, ft_atoi(av2[i]));
 			i++;
 		}
+		ft_free_char(av2);
 	}
 	else
 	{
@@ -48,10 +62,10 @@ int	main(int ac, char **av)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac < 2)
-		return (write(1, "", 1));
+		return (0);
 	stack_a = execute(ac, av);
 	if (!is_all_right(stack_a, av, row, col))
-		ft_error();
+		ft_error(&stack_a);
 	if (!is_sorted(&stack_a))
 	{
 		if (stack_size(stack_a) > 3)
@@ -59,4 +73,5 @@ int	main(int ac, char **av)
 		else
 			sort_3(&stack_a);
 	}
+	free(stack_a);
 }

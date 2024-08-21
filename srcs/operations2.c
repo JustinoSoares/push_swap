@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/20 11:15:02 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/21 16:44:55 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_write(t_stack *stack)
 
 void	pop_start(t_stack **stack)
 {
-	*stack = (*stack)->next;
+	if (*stack)
+		*stack = (*stack)->next;
 }
 
 void	append_start(t_stack **stack, int num)
@@ -42,6 +43,7 @@ void	append_start(t_stack **stack, int num)
 	new->num = num;
 	new->next = *stack;
 	*stack = new;
+	free(new);
 }
 
 void	append_end(t_stack **stack, int num)
@@ -130,6 +132,7 @@ int	next_max(t_stack *stack, int num)
 	}
 	else
 		result = min_value(stack);
+	ft_free(&tab);
 	return (result);
 }
 
@@ -138,12 +141,9 @@ int	next_min(t_stack *stack, int num)
 	t_stack	*tab;
 	int		result;
 
+	tab = NULL;
 	if (min_value(stack) < num)
 	{
-		tab = malloc(sizeof(t_stack));
-		if (!tab)
-			allocate_error(&tab);
-		tab = NULL;
 		while (stack)
 		{
 			if (stack->num < num)
@@ -151,6 +151,7 @@ int	next_min(t_stack *stack, int num)
 			stack = stack->next;
 		}
 		result = max_value(tab);
+		free_stack(tab);
 	}
 	else
 		result = max_value(stack);
@@ -180,6 +181,8 @@ int	ft_index_cheaper(int **tab)
 
 	cont = 0;
 	index = 0;
+	if (!tab)
+		return (-1);
 	cost = tab[0][COST];
 	while (tab[cont])
 	{

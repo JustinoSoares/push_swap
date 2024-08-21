@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:28:39 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/20 11:41:00 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/20 11:42:08 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_stack	*execute(int ac, char **av);
 int		ft_strcmp(char *s1, char *s2);
 void	rrr_bonus(t_stack **stack_a, t_stack **stack_b);
 void	rr_bonus(t_stack **stack_a, t_stack **stack_b);
-void	push_bonus(t_stack **stack_from, t_stack **stack_to, char ab);
+void	push_bonus(t_stack **stack_from, t_stack **stack_to);
 t_stack	*execute(int ac, char **av);
 #endif
