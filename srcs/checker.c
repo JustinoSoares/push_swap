@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:34:11 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 21:14:47 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 18:01:00 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,4 @@ int	is_dup(t_stack *stack)
 		stack = stack->next;
 	}
 	return (1);
-}
-
-int	is_all_right(t_stack *stack, char **argv, int row, int col)
-{
-	if (check_error(argv, row, col) && is_dup(stack))
-		return (1);
-	return (0);
 }

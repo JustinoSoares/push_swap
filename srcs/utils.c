@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:12:03 by justinosoar       #+#    #+#             */
-/*   Updated: 2024/08/20 12:25:56 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 17:59:58 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,31 @@ char	*ft_strncpy(char *s1, char *s2, int n)
 	return (s1);
 }
 
-char	**ft_split(char *str)
+char	**ft_split(char *s)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**split;
+	t_aux_sort	a;
+	char		**split;
 
-	i = 0;
-	k = 0;
-	if (!(split = (char **)malloc(sizeof(char *) * 256)))
+	a.i = 0;
+	a.k = 0;
+	split = malloc(sizeof(char *) * 256);
+	if (!split)
 		return (NULL);
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-		i += 1;
-	while (str[i])
+	while (s[a.i] == ' ' || s[a.i] == '\t' || s[a.i] == '\n')
+		a.i += 1;
+	while (s[a.i])
 	{
-		j = 0;
-		if (!(split[k] = (char *)malloc(sizeof(char) * 4096)))
+		a.j = 0;
+		split[a.k] = (char *)malloc(sizeof(char) * 4096);
+		if (!split[a.k])
 			return (NULL);
-		while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i])
-			split[k][j++] = str[i++];
-		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-			i += 1;
-		split[k][j] = '\0';
-		k += 1;
+		while (s[a.i] != ' ' && s[a.i] != '\t' && s[a.i] != '\n' && s[a.i])
+			split[a.k][a.j++] = s[a.i++];
+		while (s[a.i] == ' ' || s[a.i] == '\t' || s[a.i] == '\n')
+			a.i += 1;
+		split[a.k][a.j] = '\0';
+		a.k += 1;
 	}
-	split[k] = NULL;
+	split[a.k] = NULL;
 	return (split);
 }

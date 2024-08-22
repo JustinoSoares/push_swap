@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 09:40:25 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 18:39:36 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ typedef struct s_aux_sort
 	int				getter;
 	int				aux_cost;
 	int				is_duple;
+	int				i;
+	int				j;
+	int				k;
 }					t_aux_sort;
 
 void				swap(t_stack **stack, char ab);
 void				rotate(t_stack **stack, char ab);
-void				allocate_error(t_stack **stack);
-void				ft_write(t_stack *stack);
 void				append_end(t_stack **stack, int num);
 void				append_start(t_stack **stack, int num);
 void				pop_start(t_stack **stack);
@@ -70,10 +71,6 @@ void				rr_ab(t_stack **stack, char ab);
 void				rrr(t_stack **stack_a, t_stack **stack_b);
 void				rr(t_stack **stack_a, t_stack **stack_b);
 int					index_less(int a, int b);
-int					piv(t_stack **stack);
-void				sort_big(t_stack **stack_a, t_stack **stack_b);
-int					last_num(t_stack **stack);
-void				selection(t_stack **stack_a, t_stack **stack_b);
 void				ft_error(t_stack **stack);
 void				ft_error2(void);
 int					is_dup(t_stack *stack);
@@ -81,11 +78,28 @@ int					check_error(char **argv, int row, int col);
 int					ft_atoi(const char *str);
 int					is_digit(int c);
 char				**ft_split(char *str);
-int					is_all_right(t_stack *stack, char **argv, int row, int col);
 void				ft_free(t_stack **stack);
 void				free_stack(t_stack *stack);
 void				free_matriz(int **tab, int row);
 void				ft_free_char(char **str);
 void				ft_free_stack(t_stack **stack);
+void				ft_free_dup(t_stack **stack_a, t_stack **stack_b);
+void				free_tab(int **tab, t_stack *stack);
+int					*calc_cost_goo_a(int *tab, t_stack **stack_a,
+						t_stack **stack_b, t_stack *tmp_b);
+void				sort_goo_a(t_stack **stack_a, t_stack **stack_b);
+void				get_cost_a(int **tab, t_stack **stack_a, t_stack **stack_b,
+						t_stack *tmp_a);
+int					get_cost_rr(int opt_a, int opt_b, int getter);
+int					*calc_cost_goo_b(int *tab, t_stack **stack_a,
+						t_stack **stack_b, t_stack *tmp_a);
+void				sort_goo_b(t_stack **stack_a, t_stack **stack_b);
+void				get_cost_b(int **tab, t_stack **stack_a, t_stack **stack_b,
+						t_stack *tmp_b);
+int					ft_index_cheaper(int **tab, int len);
+void				ft_send_without_verify(t_stack **stack_a,
+						t_stack **stack_b);
+int					cheaper(int first, int second);
+int					is_sort_3(t_stack **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 12:20:51 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 18:03:56 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	if (ac < 2)
 		return (0);
-	if (!check_error(av, row, col))
+	stack_a = execute(ac, av);
+	if (!check_error(av, row, col) || !is_dup(stack_a))
 	{
 		ft_error(&stack_a);
 		return (0);
 	}
-	stack_a = execute(ac, av);
 	if (!is_sorted(&stack_a))
 	{
 		if (stack_size(stack_a) > 3)

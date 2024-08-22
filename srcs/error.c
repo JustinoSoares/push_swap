@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 12:36:51 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 17:45:31 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,5 @@ void	ft_error(t_stack **stack)
 void	ft_error2(void)
 {
 	write(1, "Error\n", 6);
-	exit(1);
-}
-
-void	allocate_error(t_stack **stack)
-{
-	fprintf(stderr, "Erro ao alocar memória\n");
-	ft_free(stack);
 	exit(1);
 }

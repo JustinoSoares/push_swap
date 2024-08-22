@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 11:33:27 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 18:07:26 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	rotate(t_stack **stack, char ab)
 	old_head = *stack;
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		allocate_error(&new);
+		ft_error(&new);
 	new->num = (*stack)->num;
 	new->next = NULL;
 	*stack = (*stack)->next;
@@ -92,19 +92,4 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate(stack_a, 'r');
 	rotate(stack_b, '\0');
-}
-
-void	push(t_stack **stack_from, t_stack **stack_to, char ab)
-{
-	int		top;
-
-	top = (*stack_from)->num;
-	pop_start(stack_from);
-	append_start(stack_to, top);
-	if (ab != '\0')
-	{
-		write(1, "p", 1);
-		write(1, &ab, 1);
-		write(1, "\n", 1);
-	}
 }
