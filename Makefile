@@ -6,7 +6,7 @@
 #    By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 11:42:26 by jsoares           #+#    #+#              #
-#    Updated: 2024/08/20 11:54:27 by jsoares          ###   ########.fr        #
+#    Updated: 2024/08/22 12:17:47 by jsoares          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,15 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
 $(BONUS): $(OBJ_BONUS)
 			$(CC) $(CFLAGS) $(OBJ_BONUS) -o $(BONUS)
 clean: 
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_BONUS)
+
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(BONUS)
+
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 09:01:41 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 12:20:51 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,6 @@ t_stack	*execute(int ac, char **av)
 			append_end(&stack_a, ft_atoi(av[i++]));
 	}
 	return (stack_a);
-}
-
-void	ft_free_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	while (*stack)
-	{
-		temp = (*stack)->next;
-		free(*stack);
-		*stack = temp;
-	}
 }
 
 int	main(int ac, char **av)
