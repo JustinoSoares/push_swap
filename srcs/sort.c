@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:43:05 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 20:56:22 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 12:05:40 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	is_sorted(t_stack **stack)
 			return (0);
 		tmp = tmp->next;
 	}
-	free(tmp);
 	return (1);
 }
 
@@ -92,7 +91,8 @@ static int	*calc_cost_goo_b(int *tab, t_stack **stack_a, t_stack **stack_b,
 	tab = malloc(sizeof(int) * (SIZE_TAB));
 	if (!tab)
 	{
-		free(tab);
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
 		return (NULL);
 	}
 	tab[TARGET] = tmp_a->num;
@@ -132,35 +132,33 @@ void	sort_goo_b(t_stack **stack_a, t_stack **stack_b)
 	t_aux_sort	aux;
 	int			**tab;
 
-	tab = malloc(sizeof(int *) * (stack_size(*stack_a)));
-	if (!tab)
-	{
-		free(tab);
-		return ;
-	}
 	ft_send_without_verify(stack_a, stack_b);
 	while (stack_size(*stack_a) >= 3)
 	{
 		if (is_sort_3(stack_a))
 			break ;
+		tab = malloc(sizeof(int *) * (stack_size(*stack_a)));
+		if (!tab)
+		{
+			free_matriz(tab, stack_size(*stack_a));
+			return ;
+		}
 		aux.row = 0;
 		tmp_a = *stack_a;
-		while (tmp_a)
+		while (tmp_a && stack_b)
 		{
 			tab[aux.row] = calc_cost_goo_b(tab[aux.row], stack_a, stack_b,
 					tmp_a);
 			tmp_a = tmp_a->next;
 			aux.row++;
 		}
-		aux.index_cheaper = ft_index_cheaper(tab);
+		aux.index_cheaper = ft_index_cheaper(tab, stack_size(*stack_a));
 		put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b,
 			tab[aux.index_cheaper][INDEX_B]);
+		free_matriz(tab, stack_size(*stack_a));
 		push(stack_a, stack_b, 'b');
-		if (tab)
-			free_matriz(tab, SIZE_TAB);
 	}
 	put_on_top_b(stack_b, get_index((*stack_b), max_value(*stack_b)));
-	free(tab);
 }
 
 static int	*calc_cost_goo_a(int *tab, t_stack **stack_a, t_stack **stack_b,
@@ -171,8 +169,9 @@ static int	*calc_cost_goo_a(int *tab, t_stack **stack_a, t_stack **stack_b,
 	tab = malloc(sizeof(int) * (SIZE_TAB));
 	if (!tab)
 	{
-		ft_error(stack_a);
-		ft_error(stack_b);
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
+		return (NULL);
 	}
 	tab[TARGET] = tmp_b->num;
 	tab[DEST] = next_max(*stack_a, tab[TARGET]);
@@ -196,15 +195,15 @@ void	sort_goo_a(t_stack **stack_a, t_stack **stack_b)
 	t_aux_sort	aux;
 	int			**tab;
 
-	tab = malloc(sizeof(int *) * (stack_size(*stack_b)));
-	if (!tab)
-	{
-		free(tab);
-		return ;
-	}
 	while (stack_size(*stack_b) > 0)
 	{
 		aux.row = 0;
+		tab = malloc(sizeof(int *) * (stack_size(*stack_b)));
+		if (!tab)
+		{
+			free_matriz(tab, stack_size(*stack_b));
+			return ;
+		}
 		tmp_b = *stack_b;
 		while (tmp_b)
 		{
@@ -213,13 +212,15 @@ void	sort_goo_a(t_stack **stack_a, t_stack **stack_b)
 			tmp_b = tmp_b->next;
 			aux.row++;
 		}
-		aux.index_cheaper = ft_index_cheaper(tab);
+		aux.index_cheaper = ft_index_cheaper(tab, stack_size(*stack_b));
+		if (aux.index_cheaper < 0)
+			return ;
 		put_on_top(stack_a, tab[aux.index_cheaper][INDEX_A], stack_b,
 			tab[aux.index_cheaper][INDEX_B]);
+		free_matriz(tab, stack_size(*stack_b));
 		push(stack_b, stack_a, 'a');
 	}
 	put_on_top_a(stack_a, get_index((*stack_a), min_value(*stack_a)));
-	free_matriz(tab, SIZE_TAB);
 }
 
 void	sort_any(t_stack **stack_a, t_stack **stack_b)

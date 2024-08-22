@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 21:44:40 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 09:01:41 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ t_stack	*execute(int ac, char **av)
 	return (stack_a);
 }
 
+void	ft_free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack		*stack_a;
@@ -69,12 +81,13 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	stack_a = execute(ac, av);
-	if (!is_sorted(&stack_a) && !is_dup(stack_a))
+	if (!is_sorted(&stack_a))
 	{
 		if (stack_size(stack_a) > 3)
 			sort_any(&stack_a, &stack_b);
 		else
 			sort_3(&stack_a);
 	}
-	free(stack_a);
+	ft_free_stack(&stack_a);
+	return (0);
 }

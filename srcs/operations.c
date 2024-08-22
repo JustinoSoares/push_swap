@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:18:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 16:40:26 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 11:33:27 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void	rotate(t_stack **stack, char ab)
 {
 	t_stack	*tmp;
 	t_stack	*new;
+	t_stack	*old_head;
 
+	if (!(*stack) || !(*stack)->next)
+		return ;
+	old_head = *stack;
 	new = malloc(sizeof(t_stack));
 	if (!new)
 		allocate_error(&new);
@@ -45,6 +49,7 @@ void	rotate(t_stack **stack, char ab)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	free(old_head);
 	if (ab != '\0')
 	{
 		write(1, "r", 1);
@@ -56,16 +61,18 @@ void	rotate(t_stack **stack, char ab)
 void	rr_ab(t_stack **stack, char ab)
 {
 	t_stack	*tmp;
+	t_stack	*last;
 	int		last_num;
 
+	if (!(*stack) || !(*stack)->next)
+		return ;
 	tmp = *stack;
-	while (tmp->next)
+	while (tmp->next->next)
 		tmp = tmp->next;
-	last_num = tmp->num;
-	tmp = *stack;
-	while (tmp->next && tmp->next->next)
-		tmp = tmp->next;
+	last = tmp->next;
+	last_num = last->num;
 	tmp->next = NULL;
+	free(last);
 	append_start(stack, last_num);
 	if (ab != '\0')
 	{
@@ -89,7 +96,7 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 
 void	push(t_stack **stack_from, t_stack **stack_to, char ab)
 {
-	int	top;
+	int		top;
 
 	top = (*stack_from)->num;
 	pop_start(stack_from);

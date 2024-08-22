@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 21:15:32 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 09:40:25 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					is_sorted(t_stack **stack);
 void				sort_3(t_stack **stack);
 void				sort_any(t_stack **stack_a, t_stack **stack_b);
 int					get_index(t_stack *stack, int num);
-int					ft_index_cheaper(int **tab);
+int					ft_index_cheaper(int **tab, int len);
 void				put_on_top_a(t_stack **stack_a, int index_a);
 void				put_on_top_b(t_stack **stack_b, int index_b);
 void				put_on_top(t_stack **stack_a, int index_a,
@@ -86,5 +86,6 @@ void				ft_free(t_stack **stack);
 void				free_stack(t_stack *stack);
 void				free_matriz(int **tab, int row);
 void				ft_free_char(char **str);
+void				ft_free_stack(t_stack **stack);
 
 #endif

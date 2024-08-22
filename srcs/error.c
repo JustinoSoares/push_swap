@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 20:40:20 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 12:15:19 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_free(t_stack **stack)
 		free(node);
 		*stack = (*stack)->next;
 	}
-	free(*stack);
 }
 
 void	free_stack(t_stack *stack)
@@ -40,7 +39,7 @@ void	free_stack(t_stack *stack)
 void	ft_error(t_stack **stack)
 {
 	write(1, "Error\n", 6);
-	free_stack(*stack);
+	ft_free_stack(stack);
 	exit(1);
 }
 

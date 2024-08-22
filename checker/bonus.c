@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:46:36 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/20 11:48:53 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/22 12:13:26 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int ac, char **av)
 	if (stack_a && !is_sorted(&stack_a) && ac >= 2)
 	{
 		if (!is_all_right(stack_a, av, row, col))
-			ft_error();
+			ft_error(&stack_a);
 		while (1)
 		{
 			getter = get_next_line(0);

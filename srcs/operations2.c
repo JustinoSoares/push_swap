@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:32:17 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/21 21:00:41 by justinosoar      ###   ########.fr       */
+/*   Updated: 2024/08/22 12:10:39 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void	ft_write(t_stack *stack)
 
 void	pop_start(t_stack **stack)
 {
+	t_stack	*top;
+
+	top = *stack;
 	if (*stack)
 		*stack = (*stack)->next;
+	free(top);
 }
 
 void	append_start(t_stack **stack, int num)
@@ -115,12 +119,9 @@ int	next_max(t_stack *stack, int num)
 	t_stack	*tab;
 	int		result;
 
+	tab = NULL;
 	if (max_value(stack) > num)
 	{
-		tab = malloc(sizeof(t_stack));
-		if (!tab)
-			allocate_error(&tab);
-		tab = NULL;
 		while (stack)
 		{
 			if (stack->num > num)
@@ -131,7 +132,7 @@ int	next_max(t_stack *stack, int num)
 	}
 	else
 		result = min_value(stack);
-	ft_free(&tab);
+	ft_free_stack(&tab);
 	return (result);
 }
 
@@ -150,10 +151,10 @@ int	next_min(t_stack *stack, int num)
 			stack = stack->next;
 		}
 		result = max_value(tab);
-		free_stack(tab);
 	}
 	else
 		result = max_value(stack);
+	ft_free_stack(&tab);
 	return (result);
 }
 
@@ -172,7 +173,7 @@ int	get_index(t_stack *stack, int num)
 	return (index);
 }
 // retorna o indice do custo mais barato;
-int	ft_index_cheaper(int **tab)
+int	ft_index_cheaper(int **tab, int len)
 {
 	int	cont;
 	int	cost;
@@ -183,7 +184,7 @@ int	ft_index_cheaper(int **tab)
 	if (!tab)
 		return (-1);
 	cost = tab[0][COST];
-	while (tab[cont])
+	while (cont < len)
 	{
 		if (cost > tab[cont][COST])
 		{
