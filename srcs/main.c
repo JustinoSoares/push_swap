@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 16:57:55 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 17:17:41 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ t_stack	*execute(int ac, char **av)
 	return (stack_a);
 }
 
-void	sort(t_stack *stack_a, t_stack *stack_b)
+void	sort(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!is_sorted(&stack_a))
+	if (!is_sorted(stack_a))
 	{
-		if (stack_size(stack_a) > 3)
-			sort_any(&stack_a, &stack_b);
+		if (stack_size(*stack_a) > 3)
+			sort_any(stack_a, stack_b);
 		else
-			sort_3(&stack_a);
+			sort_3(stack_a);
 	}
 }
 
@@ -85,7 +85,7 @@ int	main(int ac, char **av)
 		ft_error(&stack_a);
 		return (0);
 	}
-	sort(stack_a, stack_b);
+	sort(&stack_a, &stack_b);
 	ft_free_stack(&stack_a);
 	return (0);
 }
