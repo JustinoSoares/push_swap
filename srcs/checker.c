@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:34:11 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 18:01:00 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 17:10:42 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	check_error(char **argv, int row, int col)
 	row = 1;
 	while (argv[row])
 	{
+		if (ft_atoi(argv[row]) > 2147483647 || ft_atoi(argv[row]) < -2147483647)
+			return (0);
 		col = 0;
 		while ((argv[row][col] != '\0'))
 		{
