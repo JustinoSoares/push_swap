@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 18:39:36 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 19:20:17 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 # define SIZE_TAB 5
 # define TARGET 0
@@ -101,5 +102,6 @@ void				ft_send_without_verify(t_stack **stack_a,
 						t_stack **stack_b);
 int					cheaper(int first, int second);
 int					is_sort_3(t_stack **stack);
+int					ft_strlen(const char *s);
 
 #endif

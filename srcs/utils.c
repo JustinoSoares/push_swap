@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:12:03 by justinosoar       #+#    #+#             */
-/*   Updated: 2024/08/26 17:00:53 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 19:39:31 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-		ft_error2();
+		return (2147483647);
 	return (mod * i);
 }
 
@@ -79,4 +79,14 @@ char	**ft_split(char *s)
 	}
 	split[a.k] = NULL;
 	return (split);
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

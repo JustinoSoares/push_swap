@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:28:39 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 14:30:50 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 18:33:01 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define BUFFER_SIZE 1024
 
 # include "../srcs/push_swap.h"
+# include "../check/get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -37,7 +38,6 @@ t_stack		*execute(int ac, char **av);
 void		*ft_memmove(void *dst, const void *src, size_t len);
 char		*ft_strndup(const char *s, int len);
 char		*ft_strdup(const char *s);
-int			ft_strlen(const char *s);
 void		operations_bonus(t_stack **stack_a, t_stack **stack_b,
 				char *getter);
 #endif

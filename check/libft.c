@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:50:46 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 14:05:54 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 18:25:55 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,4 @@ char	*ft_strdup(const char *s)
 	}
 	dest[i] = '\0';
 	return ((char *)dest);
-}
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }

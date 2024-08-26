@@ -6,7 +6,7 @@
 #    By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/08 11:42:26 by jsoares           #+#    #+#              #
-#    Updated: 2024/08/22 18:38:14 by jsoares          ###   ########.fr        #
+#    Updated: 2024/08/26 18:30:12 by jsoares          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,11 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 BONUS = checker
 ARQ_BONUS = check/bonus.c  check/operations_bonus.c srcs/operations.c \
-			srcs/utils.c check/utils.c check/libft.c srcs/error.c srcs/checker.c srcs/operations2.c  srcs/sort.c
+			srcs/utils.c check/utils.c check/libft.c srcs/error.c srcs/checker.c \
+			srcs/operations2.c  srcs/sort.c \
+			srcs/aux_sort.c srcs/calc_cost_a.c srcs/calc_cost_b.c \
+			srcs/ft_index_cheaper.c srcs/operations3.c srcs/put_on_top.c \
+			check/get_next_line/get_next_line.c check/get_next_line/get_next_line_utils.c
 ARQ = srcs/main.c srcs/operations.c \
 	srcs/operations2.c srcs/error.c \
 	srcs/sort.c srcs/checker.c srcs/utils.c \
