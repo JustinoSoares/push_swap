@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:28:54 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/22 14:30:23 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:21:52 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	operations_bonus(t_stack **stack_a, t_stack **stack_b, char *getter)
 {
 	if (!ft_strcmp(getter, "sa\n"))
 		swap(stack_a, '\0');
-	if (!ft_strcmp(getter, "sb\n"))
+	else if (!ft_strcmp(getter, "sb\n"))
 		swap(stack_b, '\0');
 	else if (!ft_strcmp(getter, "rra\n"))
 		rr_ab(stack_a, '\0');
@@ -34,8 +34,6 @@ void	operations_bonus(t_stack **stack_a, t_stack **stack_b, char *getter)
 		push_bonus(stack_a, stack_b);
 	else if (!ft_strcmp(getter, "pa\n"))
 		push_bonus(stack_b, stack_a);
-	else if (!ft_strcmp(getter, "pa"))
-		push_bonus(stack_b, stack_a);
-	else if (!ft_strcmp(getter, "p"))
-		push_bonus(stack_b, stack_a);
+	else
+		ft_error2();
 }

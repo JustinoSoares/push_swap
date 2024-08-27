@@ -6,24 +6,11 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 09:30:39 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:47:32 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_free_char(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
 
 t_stack	*execute(int ac, char **av)
 {

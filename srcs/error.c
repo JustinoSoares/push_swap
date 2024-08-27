@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 09:00:54 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:03:44 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,28 @@ void	ft_free_stack(t_stack **stack)
 	}
 }
 
-void	free_stack(t_stack *stack)
-{
-	t_stack	*temp;
-
-	while (stack)
-	{
-		temp = stack;
-		free(temp);
-		stack = stack->next;
-	}
-}
-
 void	ft_error(t_stack **stack)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	ft_free_stack(stack);
 	exit(1);
 }
 
 void	ft_error2(void)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
+}
+
+void	ft_free_char(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

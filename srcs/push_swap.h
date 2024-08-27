@@ -6,18 +6,18 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 19:20:17 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:49:12 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <limits.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
 
 # define SIZE_TAB 5
 # define TARGET 0
@@ -80,7 +80,6 @@ int					ft_atoi(const char *str);
 int					is_digit(int c);
 char				**ft_split(char *str);
 void				ft_free(t_stack **stack);
-void				free_stack(t_stack *stack);
 void				free_matriz(int **tab, int row);
 void				ft_free_char(char **str);
 void				ft_free_stack(t_stack **stack);
