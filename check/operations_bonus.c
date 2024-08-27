@@ -6,11 +6,17 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:28:54 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 10:41:24 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 14:47:07 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/bonus.h"
+
+void	free_operation(char *getter, t_stack **stack_a)
+{
+	free(getter);
+	ft_error(stack_a);
+}
 
 void	operations_bonus(t_stack **stack_a, t_stack **stack_b, char *getter)
 {
@@ -34,6 +40,8 @@ void	operations_bonus(t_stack **stack_a, t_stack **stack_b, char *getter)
 		push_bonus(stack_a, stack_b);
 	else if (!ft_strcmp(getter, "pa\n"))
 		push_bonus(stack_b, stack_a);
+	else if (!ft_strcmp(getter, "Error\n"))
+		return ;
 	else
-		ft_error2();
+		free_operation(getter, stack_a);
 }

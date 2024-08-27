@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:50:46 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 10:41:17 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:56:47 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (src < dst)
 	{
 		src2 = src2 + len - 1;
-		dst2 = dst2 + len - 1;
-		while (len--)
-			*dst2-- = *src2--;
-	}
-	else if (src >= dst)
-	{
 		while (len--)
 			*dst2++ = *src2++;
 	}

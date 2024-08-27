@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 06:43:57 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 09:49:12 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 14:37:32 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void				ft_error2(void);
 int					is_dup(t_stack *stack);
 int					check_error(char **argv, int row, int col);
 int					ft_atoi(const char *str);
+int					ft_atoi_free(const char *str, t_stack **stack_a,
+						char **av2);
 int					is_digit(int c);
 char				**ft_split(char *str);
 void				ft_free(t_stack **stack);
@@ -102,5 +104,6 @@ void				ft_send_without_verify(t_stack **stack_a,
 int					cheaper(int first, int second);
 int					is_sort_3(t_stack **stack);
 int					ft_strlen(const char *s);
+int					ft_is_only_space(char *str);
 
 #endif

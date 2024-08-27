@@ -6,13 +6,19 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:12:03 by justinosoar       #+#    #+#             */
-/*   Updated: 2024/08/26 19:51:39 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 14:51:01 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+void	ft_free_dup_atoi(char **av2, t_stack **stack_a)
+{
+	ft_free_char(av2);
+	ft_error(stack_a);
+}
+
+int	ft_atoi_free(const char *str, t_stack **stack_a, char **av2)
 {
 	int				mod;
 	long long int	i;
@@ -32,10 +38,35 @@ int	ft_atoi(const char *str)
 	while (*str)
 	{
 		if (!is_digit(*str))
-			ft_error2();
+			ft_free_dup_atoi(av2, stack_a);
 		i = i * 10 + (*str - 48);
-		if ((mod * i) > 2147483647 || (mod * i) <= -2147483648)
-			return (2147483647);
+		if (i * mod >= 2147483647 || i * mod <= -2147483648)
+			ft_free_dup_atoi(av2, stack_a);
+		str++;
+	}
+	return (mod * i);
+}
+
+int	ft_atoi(const char *str)
+{
+	int				mod;
+	long long int	i;
+
+	i = 0;
+	mod = 1;
+	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\f'
+		|| *str == '\v' || *str == '\r')
+		str++;
+	if (*str == '-')
+	{
+		mod = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (is_digit(*str))
+	{
+		i = i * 10 + (*str - 48);
 		str++;
 	}
 	return (mod * i);
@@ -79,14 +110,4 @@ char	**ft_split(char *s)
 	}
 	split[a.k] = NULL;
 	return (split);
-}
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
