@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:09 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 19:37:57 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:30:39 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,32 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
+int	check(int ac, char **av, int row, int col)
+{
+	char	**av2;
+
+	av2 = ft_split(av[1]);
+	if (ac == 2)
+	{
+		if (!check_error(av2, row, col))
+		{
+			ft_free_char(av2);
+			return (0);
+		}
+	}
+	else
+	{
+		row = 1;
+		if (!check_error(av, row, col))
+		{
+			ft_free_char(av2);
+			return (0);
+		}
+	}
+	ft_free_char(av2);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack		*stack_a;
@@ -74,7 +100,7 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	if (ac < 2 || !ft_strlen(av[1]))
 		return (0);
-	if (!check_error(av, row, col))
+	if (!check(ac, av, row, col))
 	{
 		ft_error(&stack_a);
 		return (0);

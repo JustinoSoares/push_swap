@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:33 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 18:44:10 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:00:54 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	free_stack(t_stack *stack)
 
 void	ft_error(t_stack **stack)
 {
-	if (!stack || !*stack)
-		return ;
 	write(1, "Error\n", 6);
 	ft_free_stack(stack);
 	exit(1);

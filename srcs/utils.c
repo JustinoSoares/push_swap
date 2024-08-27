@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:12:03 by justinosoar       #+#    #+#             */
-/*   Updated: 2024/08/26 19:39:31 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/26 19:51:39 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	ft_atoi(const char *str)
 		if (!is_digit(*str))
 			ft_error2();
 		i = i * 10 + (*str - 48);
+		if ((mod * i) > 2147483647 || (mod * i) <= -2147483648)
+			return (2147483647);
 		str++;
 	}
-	if ((mod * i) > 2147483647 || (mod * i) < -2147483648)
-		return (2147483647);
 	return (mod * i);
 }
 

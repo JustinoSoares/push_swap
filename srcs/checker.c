@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:34:11 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 19:05:36 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 08:59:19 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,24 @@ int	is_space(int c)
 	return (0);
 }
 
-int	check_error(char **argv, int row, int col)
+int	check_error(char **av, int row, int col)
 {
-	row = 1;
-	while (argv[row])
+	while (av[row])
 	{
 		col = 0;
-		while ((argv[row][col] != '\0'))
+		if (ft_atoi(av[row]) >= 2147483647 || ft_atoi(av[row]) <= -2147483648)
+			return (0);
+		while ((av[row][col] != '\0'))
 		{
-			if (argv[row][col] == '\0')
+			if (av[row][col] == '\0')
 				break ;
-			if (is_sign(argv[row][col]))
+			if (is_sign(av[row][col]))
 			{
 				col++;
-				if (!is_digit(argv[row][col]))
+				if (!is_digit(av[row][col]))
 					return (0);
 			}
-			else if (!is_digit(argv[row][col]) && !is_space(argv[row][col]))
+			else if (!is_digit(av[row][col]) && !is_space(av[row][col]))
 				return (0);
 			col++;
 		}
