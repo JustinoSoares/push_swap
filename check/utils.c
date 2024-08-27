@@ -6,11 +6,11 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:32:14 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 18:25:41 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:41:30 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bonus.h"
+#include "include/bonus.h"
 
 void	rrr_bonus(t_stack **stack_a, t_stack **stack_b)
 {

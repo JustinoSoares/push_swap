@@ -6,11 +6,11 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:28:54 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 10:21:52 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:41:24 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bonus.h"
+#include "include/bonus.h"
 
 void	operations_bonus(t_stack **stack_a, t_stack **stack_b, char *getter)
 {

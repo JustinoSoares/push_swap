@@ -6,11 +6,11 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:50:46 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 18:25:55 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:41:17 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bonus.h"
+#include "include/bonus.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

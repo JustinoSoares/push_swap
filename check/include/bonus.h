@@ -6,17 +6,19 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:28:39 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/26 18:33:01 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:41:52 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BONUS_H
 # define BONUS_H
 
-# define BUFFER_SIZE 1024
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1234
+# endif
 
-# include "../srcs/push_swap.h"
-# include "../check/get_next_line/get_next_line.h"
+# include "../../srcs/push_swap.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -28,6 +30,16 @@ typedef struct s_aux_get
 	int		bytes_read;
 	int		newline_index;
 }			t_aux_get;
+
+char		*get_next_line(int descritor_arquivo);
+char		*ft_strjoin(char *s1, char *s2);
+int			ft_strlen(const char *s);
+char		*ft_strchr(const char *s, int c);
+char		*ler_primeira_linha(int descritor_arquivo, char *texto);
+char		*obter_linha(char *texto);
+char		*limpar_primeira_linha(char *texto);
+void		*ft_calloc(unsigned int count, unsigned int size);
+void		ft_bzero(void *s, unsigned int n);
 
 t_stack		*execute(int ac, char **av);
 int			ft_strcmp(char *s1, char *s2);

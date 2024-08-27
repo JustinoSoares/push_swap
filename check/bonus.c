@@ -6,11 +6,11 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:46:36 by jsoares           #+#    #+#             */
-/*   Updated: 2024/08/27 10:14:52 by jsoares          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:40:45 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/bonus.h"
+#include "include/bonus.h"
 
 void	response(int is_sort, t_stack **stack)
 {
